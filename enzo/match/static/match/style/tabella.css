@@ -1,0 +1,15 @@
+table {
+    margin: 10px 0 0 0;
+}
+
+td {
+    text-align: center;
+}
+
+.img {
+    width: 40%;
+}
+
+img {
+    width: 100%;
+}

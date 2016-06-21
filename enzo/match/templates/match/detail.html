@@ -1,0 +1,18 @@
+{% extends 'match/base.html' %}
+{% load staticfiles %}
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{%  static 'match/style/foto.css' %}">
+{% endblock %}
+{% block main %}
+    <img src="{{ foto.img.url }}">
+    <p><strong>{{ foto.titolo }}</strong></p>
+    <br>
+    <p>Rank: {{ foto.get_rank }}</p>
+    <p>Punteggio: {{ foto.punteggio }}</p>
+    {% if proprietario %}
+        <p>Vittorie: {{ foto.vittoria }}</p>
+        <p>Sconfitte: {{ foto.sconfitta }}</p>
+        <p>Giornate vinte: {{ perc_gio }}%</p>
+    {% endif %}
+{% endblock %}

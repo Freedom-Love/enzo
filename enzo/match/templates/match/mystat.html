@@ -1,0 +1,11 @@
+{% extends 'match/base.html' %}
+{% load staticfiles %}
+{% block main %}
+    <p>Percentuale Match Vinti: {{ match }}%</p>
+    <p>Rank Medio Attuale: {{ rank_medio }}</p>
+    <p>Rank Più Alto: {{ rank_max }}</p>
+    <p>Rank Più Basso: {{ rank_min }}</p>
+    <br>
+    <p><a href="{% url 'match:pers_rank' '0' %}">Foto Migliori</a></p>
+    <p><a href="{% url 'match:pers_inv_rank' '0' %}"> Foto Peggiori</a></p>
+{% endblock %}

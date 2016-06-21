@@ -1,0 +1,15 @@
+{% extends 'match/base.html' %}
+{% block main %}
+    {% if inserted %}
+        <p>Immagine Inserita Correttamente</p>
+    {% endif %}
+    {% if error %}
+        <p class="error">Errore! Immagine non inserita</p>
+    {% endif %}
+    <p>Inserisci i dati della foto:</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Inserisci">
+    </form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'match/base.html' %}
+{% load staticfiles %}
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'match/style/tabella.css' %}">
+{% endblock %}
+{% block main %}
+    <p>{{ title }}</p>
+    <br>
+    {% if foto %}
+        <table>
+        <tr>
+            <td>Rank</td><td>Immagine</td><td>Titolo</td><td>Punteggio</td>
+        </tr>
+        {% for f in foto %}
+             <tr>
+                <td>{{ f.get_rank }}</td><td class="img"><a href="{% url 'match:foto_detail' f.pk %}"><img src="{{ f.img.url }}"></a></td><td>{{ f.titolo }}</td><td>{{ f.punteggio }}</td>
+             </tr>
+        {% endfor %}
+        </table>
+        {% if prev %}
+        <p><a href="{{ prev }}">Prev</a></p>
+        {% endif %}
+        {% if next %}
+        <p><a href="{{ next }}">Next</a></p>
+        {% endif %}
+    {% else %}
+        <p>Non vi sono foto</p>
+    {% endif %}
+{% endblock %}

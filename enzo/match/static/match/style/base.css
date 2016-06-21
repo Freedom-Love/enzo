@@ -1,0 +1,37 @@
+body {
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0 20px 0;
+    margin-bottom: 40px;
+    color: white;
+    background-color: red;
+
+}
+
+header a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+nav {
+    float: left;
+    border-width: medium;
+    border-style: solid;
+    border-color: red;
+    padding: 10px;
+}
+
+main {
+    float: left;
+    text-align: center;
+    width: 80%;
+    padding-bottom: 40px;
+}
+
+footer {
+    text-align: center;
+    font-size: small;
+}

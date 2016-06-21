@@ -1,0 +1,55 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>{{ title }} - Enzo</title>
+    {% endblock %}
+        <link rel="stylesheet" type="text/css" href="{% static 'match/style/base.css' %}">
+    {% block style %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <a href="{% url 'match:index' %}"><p>Enzo - La Regina delle Auto</p></a>
+    </header>
+    <nav>
+        {% block nav %}
+            {% if logged %}
+                <p>Benvenuto {{ logged }}</p>
+                <p><a href="{% url 'logout' %}">Logout</a></p>
+                <p><a href="{% url 'match:myphoto' %}">Le mie Foto</a> </p>
+                <p><a href="{% url 'match:mystat' %}">Le mie Statistiche</a> </p>
+            {% else %}
+                <p><a href="{% url 'login' %}">Login</a> </p>
+            {% endif %}
+            <hr>
+            <p><a href="{% url 'match:rank' '0' %}">Classifica Migliori</a> </p>
+            <p><a href="{% url 'match:inv_rank' '0' %}">Classifica Peggiori</a> </p>
+            <hr><p>Vincitore Giornata</p>
+            <form>
+            {{ gio_form.as_p }}
+            <input type="button" value="Guarda Vincitore" onclick="giornata_redirect()">
+            </form>
+        {% endblock %}
+    </nav>
+    <main>{% block main %}{% endblock %}</main>
+    <footer>
+        <p>Realizzato da Filippo Muzzini</p>
+    </footer>
+
+    {% block script %}
+        <script>
+            function giornata_redirect(){
+                url = '{% url 'match:giornata' %}';
+                url += document.getElementById('id_data_year').value +
+                       '/' + document.getElementById('id_data_month').value +
+                       '/' + document.getElementById('id_data_day').value +
+                       '/';
+                window.location.href = url;
+            }
+        </script>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'match/base.html' %}
+{% block main %}
+    {% if form.errors %}
+      <p class="error">Username o password non corretti</p>
+    {% endif %}
+
+  <form method="post">
+      {% csrf_token %}
+      <p>
+        {{ form.username.label_tag }}
+        {{ form.username }}
+      </p>  <p>
+        {{ form.password.label_tag }}
+        {{ form.password }}
+      </p>
+      {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+      {% else %}
+        <input type="hidden" name="next" value="{% url 'match:index' %}" />
+      {% endif %}
+      <input type="submit" value="login" />
+    </form>
+
+    <p><a href="{% url 'registration' %}">Oppure registrati</a></p>
+{% endblock %}

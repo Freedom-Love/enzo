@@ -1,0 +1,25 @@
+{% extends 'match/base.html' %}
+{% load staticfiles %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'match/style/index.css' %}">
+{% endblock %}
+{% block main %}
+    {% if foto %}
+        <form method="post">
+        {% csrf_token %}
+        <section>
+        {% for f in foto %}
+            <label for="radio{{ forloop.counter }}"><img src="{{  f.img.url }}"><br><span>{{ f.titolo }}</span></label>
+            <input type="radio" name="foto" id="radio{{ forloop.counter }}" value="{{ f.pk }}">
+            <input type="hidden" name="foto{{ forloop.counter }}" value="{{ f.pk }}" id="foto{{ forloop.counter }}">
+            <br><br>
+        {% endfor %}
+        </section>
+        <br>
+        <input type="submit" value="Vota">
+        </form>
+    {% else %}
+        <p>Non ci sono foto nel dataset</p>
+    {% endif %}
+{% endblock%}
+

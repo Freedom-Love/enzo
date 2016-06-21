@@ -1,0 +1,33 @@
+{% extends 'match/base.html' %}
+{% load staticfiles %}
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'match/style/tabella.css' %}">
+{% endblock %}
+{% block main %}
+    <p><a href="{% url 'match:insert' %}">Inserisci una nuova Foto</a></p>
+    <br>
+    {% if foto %}
+        <p>Per visualizzare i dettagli di una Foto fare Click su di essa</p>
+        <form method="post" action="{% url 'match:delete' %}" onsubmit="return conferma_canc()">
+        {% csrf_token %}
+        <input type="submit" value="Cancella Foto Selezionate">
+        <table>
+        {% for f in foto %}
+            <tr>
+                <td><input type="checkbox" name="foto_sel[]" value="{{ f.pk }}"></td>
+                <td class="img"><a href="{% url 'match:foto_detail' f.pk %}"><img src="{{ f.img.url }}"></a></td>
+                <td class="titolo">{{ f.titolo }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        </form>
+    {% else %}
+        <p>Non hai Foto</p>
+    {% endif %}
+{% endblock %}
+{% block script %}
+    <script type="text/javascript" src="{% static 'match/script/myphoto.js' %}">
+    </script>
+    {{ block.super }}
+{% endblock %}
